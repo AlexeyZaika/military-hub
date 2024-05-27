@@ -11068,16 +11068,13 @@
         __webpack_require__(763);
         var isotope = __webpack_require__(334);
         const items = document.querySelectorAll(".header__catalog-sublist.level-1");
-        let width = window.innerWidth < 1400 ? 200 : 220;
-        window.addEventListener("resize", (() => {
-            width = window.innerWidth < 1400 ? 200 : 220;
-        }));
         if (items.length) for (const item of items) {
             new isotope(item, {
                 itemSelector: ".header__catalog-sublist-item.level-1",
                 layoutMode: "masonry",
+                percentPosition: true,
                 masonry: {
-                    columnWidth: width,
+                    columnWidth: ".header__catalog-sublist-item.level-1",
                     horizontalOrder: true
                 }
             });
@@ -11328,6 +11325,7 @@
         function setCatalogListHeight() {
             const height = headerTop.clientHeight + headerBottom.clientHeight;
             catalogMenu.style.height = `calc(100vh - ${height}px)`;
+            catalogMenu.style.top = height + "px";
         }
         function closeCatalogMenu() {
             catalogButton.classList.remove("active");
@@ -11423,7 +11421,7 @@
                 }
             }));
         }
-        const passwordInputs = document.querySelectorAll(".profile__input-body.password");
+        const passwordInputs = document.querySelectorAll(".password");
         if (passwordInputs.length) for (const passwordInput of passwordInputs) {
             const showButton = passwordInput.querySelector("svg");
             const input = passwordInput.querySelector("input");
